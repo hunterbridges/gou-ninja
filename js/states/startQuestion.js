@@ -6,6 +6,8 @@ function StartQuestionState() {
 StartQuestionState.prototype.begin = function(completion, env) {
   if (completion) completion(env);
 
+  $('#prompt-state input').val('');
+
   this.generateTurn();
   GouNinja.questionNumber++;
   GouNinja.transitionToState('ask');

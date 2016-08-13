@@ -33,7 +33,6 @@ PromptState.prototype.complete = function(completion, env) {
   this.$timer.removeClass('animate');
   this.$timer.addClass('complete');
   this.$input.removeClass('flash fl-yellow');
-  this.$input.val('');
   this.$input.blur();
   this.$state.css('display', 'none');
   this.$input.off('keyup');
