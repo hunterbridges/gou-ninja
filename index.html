@@ -1,0 +1,83 @@
+---
+layout: default
+---
+
+<div id="interface-layer" class="">
+  <div id="interface-wrapper" class="flex flex-center flex-column">
+    <div id="top-area" class="relative">
+      <a href="#!" id="quit" class="m1">Quit Game</a>
+      <div id="play-scoreboard" class="mt1 mb1">
+      </div>
+    </div>
+
+
+    <div id="middle-wrapper">
+      <div id="center-area" class="bold p2 mx-auto center">
+        <!--<div id="indicator-display">Ikebukuro</div>-->
+        <div id="launcher" class="mx-auto p2 bg-white rounded">
+          <h2 class="m0">号忍者</h2>
+          <h1 class="m0">Gou Ninja</h1>
+          <p class="m0 weight-light">番号を聞いているを練習しましょう！</p>
+          <p class="mt1 mb0 small weight-light">著 <a href="https://twitter.com/hunterbridges" target="_blank">@HunterBridges</a></p>
+            <h3 class="mb0">Game Options</h3>
+
+          <p class="m0 weight-light">
+            <label for="config-max">Max Reading Number:</label>&nbsp;&nbsp;
+            <select name="config-max" id="config-max">
+              <option value="10">10</option>
+              <option value="100" selected>100</option>
+              <option value="1000">1,000</option>
+              <option value="10000">10,000</option>
+              <option value="1000000">1,000,000</option>
+            </select>
+            <br>
+
+            <label for="config-length">Game Length:</label>&nbsp;&nbsp;
+            <select name="config-length" id="config-length">
+              <option value="10">10 Questions</option>
+              <option value="25">25 Questions</option>
+              <option value="50">50 Questions</option>
+              <option value="100">100 Questions</option>
+            </select>
+            <br>
+
+            <label for="config-units">Include Units?</label>&nbsp;&nbsp;
+            <input type="checkbox" name="config-units" id="config-units" checked>
+            <br><br>
+
+            <a href="#!" data-difficulty="easy" id="start-easy" class="btn btn-primary start-button weight-light bg-green">Easy<br>(2 repeats)</a>
+            <a href="#!" data-difficulty="med"  id="start-med"  class="btn btn-primary start-button weight-light bg-orange">Medium<br>(1 repeat)</a>
+            <a href="#!" data-difficulty="hard" id="start-hard" class="btn btn-primary start-button weight-light bg-red">Hard<br>(No repeats)</a>
+          </p>
+        </div>
+
+        <div id="ask-state">
+          <img src="/img/ear.svg" class="instruction-icon">
+          (Make sure your volume is on!)
+        </div>
+
+        <div id="prompt-state">
+          <img src="/img/keyboard.svg" class="instruction-icon">
+          <input id="prompt-answer" class="h1 border-none center">
+        </div>
+
+        <div id="result-state">
+          <img src="/img/barchart.svg" class="instruction-icon">
+          <span id="right-or-wrong"></span> You get <span id="points-awarded"></span> points.<br>
+          <span class="weight-light">Press [Return] to continue.</span>
+        </div>
+
+        <div id="finish-state">
+          The game is over. You got <span id="total-points"></span> points.<br><br>
+          <a href="#!" class="btn bg-green white rounded">Play Again</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="bottom-area">
+      <div id="play-timer" class="bg-darken-4">
+        <div class="fill mx-auto bg-green"></div>
+      </div>
+    </div>
+  </div>
+</div>

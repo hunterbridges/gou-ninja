@@ -1,0 +1,131 @@
+html,body { height: 100%; margin: 0px; padding: 0px; }
+
+.page-content {
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+#interface-layer, #interface-wrapper {
+  height:100%;
+  width:100%;
+}
+
+#ask-state, #prompt-state, #result-state, #finish-state {
+  display:none;
+}
+
+#top-area {
+  text-align:center;
+  width:100%;
+}
+
+#bottom-area {
+  width:100%;
+}
+
+#center-area {
+  align-self: center;
+  flex-grow:1;
+}
+
+#middle-wrapper {
+  display:flex;
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+
+#play-timer {
+  height:20px;
+}
+
+#play-timer .fill {
+  height:20px;
+}
+
+#prompt-answer {
+  outline: none;
+  background: transparent;
+}
+
+@keyframes countdown {
+  0% {
+    width: 100%;
+    background-color: #2ecc40;
+  }
+
+  50% {
+    width: 50%;
+    background-color: #ff851b;
+  }
+
+  100% {
+    width: 0%;
+    background-color: #ff4136;
+  }
+}
+
+#play-timer.animate .fill {
+  animation-name: countdown;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+
+#play-timer.complete .fill {
+  width:0%;
+  background-color: #ff4136;
+}
+
+.instruction-icon {
+  max-height:128px;
+  max-width:128px;
+  display:block;
+  margin:2em auto;
+  opacity:0.25;
+}
+
+#quit {
+  position:absolute;
+  top:0;
+  right:0;
+}
+
+@keyframes flash-yellow-kf {
+  0% { background-color:rgba(255, 235, 59, 1); }
+  100% { background-color:rgba(255, 235, 59, 0); }
+}
+
+@keyframes flash-green-kf {
+  0% { background-color:rgba(76, 175, 80, 1); }
+  100% { background-color:rgba(76, 175, 80, 0); }
+}
+
+@keyframes flash-red-kf {
+  0% { background-color:rgba(229, 115, 115, 1); }
+  100% { background-color:rgba(229, 115, 115, 0); }
+}
+
+.flash {
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+
+.flash.fl-yellow {
+  animation-name: flash-yellow-kf;
+}
+
+.flash.fl-green {
+  animation-name: flash-green-kf;
+}
+
+.flash.fl-red {
+  animation-name: flash-red-kf;
+}
+
