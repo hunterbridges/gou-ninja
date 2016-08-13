@@ -1,15 +1,15 @@
 $(document).ready(function() {
   // Entry point
   var runApp = function() {
-    var voices = window.speechSynthesis.getVoices();
     HUD.init();
     HUD.show();
     GouNinja.init();
   };
 
-  if (window.speechSynthesis.onvoiceschanged !== undefined) {
-    window.speechSynthesis.onvoiceschanged = runApp;
-  } else {
+  var voices = window.speechSynthesis.getVoices();
+  if (!!voices && _(voices).isArray() && voices.length > 0) {
     runApp();
+  } else if (speechSynthesis.onvoiceschanged !== undefined) {
+    window.speechSynthesis.onvoiceschanged = runApp;
   }
 });
