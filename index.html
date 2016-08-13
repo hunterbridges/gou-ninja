@@ -42,13 +42,56 @@ layout: default
             <br>
 
             <label for="config-units">Include Units?</label>&nbsp;&nbsp;
-            <input type="checkbox" name="config-units" id="config-units" checked>
+            <input type="checkbox" name="config-units" id="config-units" checked><br>
+            <a href="#!" id="config-units-button">Select Units</a>
             <br><br>
 
             <a href="#!" data-difficulty="easy" id="start-easy" class="btn btn-primary start-button weight-light bg-green">Easy<br>(2 repeats)</a>
             <a href="#!" data-difficulty="med"  id="start-med"  class="btn btn-primary start-button weight-light bg-orange">Medium<br>(1 repeat)</a>
             <a href="#!" data-difficulty="hard" id="start-hard" class="btn btn-primary start-button weight-light bg-red">Hard<br>(No repeats)</a>
           </p>
+        </div>
+
+        <div id="select-units-state" class="mx-auto p2 bg-white rounded">
+          <div id="units-menu">
+            <a class="btn bg-red white rounded" id="units-select-none">Select None</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a class="btn bg-green white rounded" id="units-select-all">Select All</a>
+            <h3>Available Units</h3>
+            <b>Objects</b><br>
+            <input type="checkbox" name="unit-tsu" id="unit-tsu" data-unit="つ" checked><!--
+            --><label for="unit-tsu" class="weight-light nowrap">つ - Things</label>&nbsp;&nbsp;
+            <input type="checkbox" name="unit-dai" id="unit-dai" data-unit="台" checked><!--
+            --><label for="unit-dai" class="weight-light nowrap">台「だい」- Machines</label><br>
+            <input type="checkbox" name="unit-hon" id="unit-hon" data-unit="本" checked><!--
+            --><label for="unit-hon" class="weight-light nowrap">本「ほん」- Long, thin objects</label><br>
+            <input type="checkbox" name="unit-mai" id="unit-mai" data-unit="枚" checked><!--
+            --><label for="unit-mai" class="weight-light nowrap">枚「まい」- Thin, flat objects</label><br>
+            <br><b>Time</b><br>
+            <input type="checkbox" name="unit-bun" id="unit-bun" data-unit="分" checked><!--
+            --><label for="unit-bun" class="weight-light nowrap">分「ぶん」- Minutes</label><br>
+            <input type="checkbox" name="unit-ji" id="unit-ji" data-unit="時" checked><!--
+            --><label for="unit-ji" class="weight-light nowrap">時「じ」- Hour of the day</label><br>
+            <input type="checkbox" name="unit-jikan" id="unit-jikan" data-unit="時間" checked><!--
+            --><label for="unit-jikan" class="weight-light nowrap">時間「じかん」- Hour-long periods</label><br>
+            <input type="checkbox" name="unit-gatsu" id="unit-gatsu" data-unit="月" checked><!--
+            --><label for="unit-gatsu" class="weight-light nowrap">月「がつ」- Months of the year</label><br>
+            <input type="checkbox" name="unit-kagetsu" id="unit-kagetsu" data-unit="ヶ月" checked><!--
+            --><label for="unit-kagetsu" class="weight-light nowrap">ヶ月「かげつ」- Month-long periods</label><br>
+            <input type="checkbox" name="unit-ka" id="unit-ka" data-unit="日" checked><!--
+            --><label for="unit-ka" class="weight-light nowrap">日「か」- Day of the month</label><br>
+            <input type="checkbox" name="unit-shuu" id="unit-shuu" data-unit="週" checked><!--
+            --><label for="unit-shuu" class="weight-light nowrap">週「しゅう」- Weeks</label><br>
+            <input type="checkbox" name="unit-sai" id="unit-sai" data-unit="才" checked><!--
+            --><label for="unit-sai" class="weight-light nowrap">才「さい」- Years of age</label><br>
+
+            <br><b>Other</b><br>
+            <input type="checkbox" name="unit-kai" id="unit-kai" data-unit="回" checked><!--
+            --><label for="unit-kai" class="weight-light nowrap">回「かい」- Frequency</label><br>
+            <input type="checkbox" name="unit-null" id="unit-null" data-unit="" checked><!--
+            --><label for="unit-null" class="weight-light nowrap">(no unit)</label><br>
+
+            <br><a class="btn bg-blue white rounded" id="units-ok">OK</a>
+          </div>
         </div>
 
         <div id="ask-state">
@@ -58,18 +101,23 @@ layout: default
 
         <div id="prompt-state">
           <img src="/img/keyboard.svg" class="instruction-icon">
-          <input id="prompt-answer" class="h1 border-none center">
+          <input type="number" id="prompt-answer" class="h1 center">
         </div>
 
         <div id="result-state">
           <img src="/img/barchart.svg" class="instruction-icon">
-          <span id="right-or-wrong"></span> You get <span id="points-awarded"></span> points.<br>
-          <span class="weight-light">Press [Return] to continue.</span>
+          <span id="right-or-wrong"></span> You get <span id="points-awarded"></span> points.<br><br>
+          <a href="#!" class="btn bg-blue white rounded">Continue</a>
         </div>
 
         <div id="finish-state">
           The game is over. You got <span id="total-points"></span> points.<br><br>
           <a href="#!" class="btn bg-green white rounded">Play Again</a>
+        </div>
+
+        <div id="error-state">
+          <h1 class="red">Error</h1>
+          <span id="error-message" class="weight-light"></span>
         </div>
       </div>
     </div>

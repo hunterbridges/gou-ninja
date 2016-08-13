@@ -2,7 +2,7 @@ function ReadyState() {
   this.identifier = 'ready';
 };
 
-ReadyState.prototype.begin = function(completion) {
+ReadyState.prototype.begin = function(completion, env) {
   this.$timer = $('#play-timer');
   this.$timer.css('display', 'none');
 
@@ -22,14 +22,18 @@ ReadyState.prototype.begin = function(completion) {
     var $link = $(e.currentTarget);
     state.startGame($link.attr('data-difficulty'));
   });
-  if (completion) completion();
+
+  this.$launcher.delegate('#config-units-button', 'click', function(e) {
+      GouNinja.transitionToState('selectUnits');
+  });
+  if (completion) completion(env);
 };
 
-ReadyState.prototype.complete = function(completion) {
+ReadyState.prototype.complete = function(completion, env) {
   this.$launcher.undelegate('.start-button', 'click');
   this.$launcher.css('display', 'none');
 
-  if (completion) completion();
+  if (completion) completion(env);
 };
 
 ReadyState.prototype.startGame = function(difficulty) {
@@ -54,6 +58,11 @@ ReadyState.prototype.getRules = function(difficulty) {
   } else if (difficulty === 'hard') {
     rules.maxTries = 1;
   }
+
+  rules.selectedUnits = $.makeArray($('#units-menu input:checked').map(function(i, el) {
+    return $(el).attr('data-unit');
+  }));
+  console.info(rules.selectedUnits);
 
   return rules;
 };

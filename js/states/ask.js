@@ -2,7 +2,7 @@ function AskState() {
   this.identifier = 'ask';
 };
 
-AskState.prototype.begin = function(completion) {
+AskState.prototype.begin = function(completion, env) {
   this.$timer = $('#play-timer');
   this.$timer.css('display', 'block');
   this.$timer.removeClass('complete');
@@ -11,14 +11,12 @@ AskState.prototype.begin = function(completion) {
   this.$state = $('#ask-state');
   this.$state.css('display', 'block');
 
-  GouNinja.questionNumber++;
-
   if (completion) completion();
 
   this.doAsk();
 };
 
-AskState.prototype.complete = function(completion) {
+AskState.prototype.complete = function(completion, env) {
   this.$state.css('display', 'none');
   if (completion) completion();
 };

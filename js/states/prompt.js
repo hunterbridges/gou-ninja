@@ -2,7 +2,7 @@ function PromptState() {
   this.identifier = 'prompt';
 };
 
-PromptState.prototype.begin = function(completion) {
+PromptState.prototype.begin = function(completion, env) {
   this.$state = $('#prompt-state');
   this.$state.css('display', 'block');
 
@@ -24,10 +24,12 @@ PromptState.prototype.begin = function(completion) {
   this.$timer.css('display', 'block');
 
   this.startTimer();
-  if (completion) completion();
+  if (completion) completion(env);
 };
 
-PromptState.prototype.complete = function(completion) {
+PromptState.prototype.complete = function(completion, env) {
+  clearTimeout(this.timeout);
+
   this.$timer.removeClass('animate');
   this.$timer.addClass('complete');
   this.$input.removeClass('flash fl-yellow');
@@ -41,7 +43,7 @@ PromptState.prototype.complete = function(completion) {
   var accum = _([5000, durationMs]).min();
   GouNinja.turn.answerTime += accum;
 
-  if (completion) completion();
+  if (completion) completion(env);
 };
 
 PromptState.prototype.startTimer = function() {
@@ -60,7 +62,6 @@ PromptState.prototype.startTimer = function() {
 
 PromptState.prototype.handleResponse = function(str) {
   if (this.validateResponse(str)) {
-    clearTimeout(this.timeout);
     GouNinja.turn.answer = str;
     GouNinja.transitionToState('result');
   } else {

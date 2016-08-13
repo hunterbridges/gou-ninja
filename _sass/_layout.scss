@@ -11,7 +11,8 @@ html,body { height: 100%; margin: 0px; padding: 0px; }
   width:100%;
 }
 
-#ask-state, #prompt-state, #result-state, #finish-state {
+#ask-state, #prompt-state, #result-state, #finish-state, #error-state, #launcher,
+#select-units-state {
   display:none;
 }
 
@@ -47,6 +48,10 @@ html,body { height: 100%; margin: 0px; padding: 0px; }
 #prompt-answer {
   outline: none;
   background: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px dotted;
 }
 
 @keyframes countdown {

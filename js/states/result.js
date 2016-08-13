@@ -2,19 +2,21 @@ function ResultState() {
   this.identifier = 'result';
 };
 
-ResultState.prototype.begin = function(completion) {
+ResultState.prototype.begin = function(completion, env) {
   this.$state = $('#result-state');
   this.$state.css('display', 'block');
+
+  var state = this;
+  this.$state.delegate('a.btn', 'click', function() {
+    state.progress();
+  });
+  $("#quit").blur();
 
   setTimeout(function() {
     $(document).on('keypress', function(event){
       var keycode = (event.keyCode ? event.keyCode : event.which);
       if (keycode == '13'){
-        if (GouNinja.questionNumber < GouNinja.rules.gameLength) {
-          GouNinja.transitionToState('startQuestion');
-        } else {
-          GouNinja.transitionToState('finish');
-        }
+        state.progress();
       }
     });
   }, 100);
@@ -22,13 +24,14 @@ ResultState.prototype.begin = function(completion) {
 
   this.checkAnswer();
 
-  if (completion) completion();
+  if (completion) completion(env);
 };
 
-ResultState.prototype.complete = function(completion) {
+ResultState.prototype.complete = function(completion, env) {
   this.$state.css('display', 'none');
+  this.$state.undelegate('a.btn', 'click');
   $(document).off('keypress');
-  if (completion) completion();
+  if (completion) completion(env);
 };
 
 ResultState.prototype.checkAnswer = function() {
@@ -38,7 +41,7 @@ ResultState.prototype.checkAnswer = function() {
   GouNinja.totalAnswers++;
   if (parseInt(GouNinja.turn.answer) == GouNinja.turn.number) {
     // Ya did it.
-    $rightOrWrong.html('Correct!');
+    $rightOrWrong.html('Correct! '+GouNinja.turn.string+'。');
 
     var awarded = Math.floor((15000 - GouNinja.turn.answerTime) / 100);
     $pointsAwarded.html(awarded);
@@ -54,12 +57,20 @@ ResultState.prototype.checkAnswer = function() {
     }, 1);
   } else {
     // Ya blew it.
-    $rightOrWrong.html('Sorry! The answer was '+GouNinja.turn.number+'.');
+    $rightOrWrong.html('Sorry! The answer was '+GouNinja.turn.string+'。');
     $pointsAwarded.html('0');
     var state = this;
     $wrapper.removeClass('flash fl-red fl-green');
     setTimeout(function() {
       $wrapper.addClass('flash fl-red');
     }, 1);
+  }
+};
+
+ResultState.prototype.progress = function() {
+  if (GouNinja.questionNumber < GouNinja.rules.gameLength) {
+    GouNinja.transitionToState('startQuestion');
+  } else {
+    GouNinja.transitionToState('finish');
   }
 };

@@ -1,7 +1,9 @@
 var GouNinja = {
-  validStates: ['ready', 'startQuestion', 'ask', 'prompt', 'result', 'finish'],
+  validStates: ['ready', 'startQuestion', 'ask', 'prompt', 'result', 'finish', 'error', 'selectUnits'],
   validTransitions: {
-    'ready': ['startQuestion'],
+    'error': [],
+    'ready': ['startQuestion', 'selectUnits'],
+    'selectUnits': ['ready'],
     'startQuestion': ['ask'],
     'ask': ['prompt', 'finish'],
     'prompt': ['result', 'ask', 'finish'],
@@ -10,7 +12,9 @@ var GouNinja = {
   },
 
   stateClasses: {
+    'error': ErrorState,
     'ready': ReadyState,
+    'selectUnits': SelectUnitsState,
     'startQuestion': StartQuestionState,
     'ask': AskState,
     'prompt': PromptState,
@@ -25,12 +29,18 @@ var GouNinja = {
 
   // Funcs
   init: function() {
-    if ('speechSynthesis' in window) {
-      this.voice = _(window.speechSynthesis.getVoices()).find(function(voice) {
-        return voice.lang === "ja-JP";
-      });
-      console.log("Found Voice:");
-      console.info(this.voice);
+    if (!('speechSynthesis' in window)) {
+      this.transitionToState('error', {message: 'The SpeechSynthesis API is not available in your browser. :(<br><a href="http://caniuse.com/#feat=speech-synthesis" target="_blank">Which browsers can I use?</a>'});
+      return;
+    }
+
+    this.voice = _(window.speechSynthesis.getVoices()).find(function(voice) {
+      return voice.lang === "ja-JP";
+    });
+
+    if (!this.voice) {
+      this.transitionToState('error', {message: 'Could not find any Japanese speech voices on your system. :('});
+      return;
     }
 
     this.transitionToState('ready');
@@ -46,7 +56,7 @@ var GouNinja = {
     }
 
     if (!this.currentState) {
-      if (newState == 'ready') {
+      if (newState == 'ready' || newState == 'error') {
         return true;
       } else {
         return false;
@@ -61,7 +71,7 @@ var GouNinja = {
     return true;
   },
 
-  transitionToState: function(newState) {
+  transitionToState: function(newState, env) {
     if (!this.isValidTransition(newState)) {
       return false;
     }
@@ -74,13 +84,13 @@ var GouNinja = {
         game.currentState = null;
         game.currentState = new newStateClass(env);
         console.log("Beginning state <"+game.currentState.identifier+">");
-        game.currentState.begin();
+        game.currentState.begin(null, env);
         HUD.update();
-      })
+      }, env);
     } else {
-      game.currentState = new newStateClass({});
+      game.currentState = new newStateClass(env);
       console.log("Beginning state <"+this.currentState.identifier+">");
-      game.currentState.begin();
+      game.currentState.begin(null, env);
       HUD.update();
     }
   }

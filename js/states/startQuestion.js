@@ -1,32 +1,18 @@
 function StartQuestionState() {
   this.identifier = 'startQuestion';
-  this.units = [
-    '',   // No unit
-    'つ', // tsu - things
-    '台', // dai - machines
-    '本', // hon - long, thin objects
-    '枚', // mai - thin, flat objects
-    '分', // bun - minutes
-    '時', // ji - hour of the day
-    '時間', // jikan - hour long periods
-    '月', // gatsu - months of the year
-    'ヶ月', // kagetsu - month-long periods
-    '日', // ka - day of the month
-    '週', // shuu - weeks
-    '才', // sai - years of age
-    '回' // kai - frequency
-  ];
+  this.units = GouNinja.rules.selectedUnits;
 };
 
-StartQuestionState.prototype.begin = function(completion) {
-  if (completion) completion();
+StartQuestionState.prototype.begin = function(completion, env) {
+  if (completion) completion(env);
 
   this.generateTurn();
+  GouNinja.questionNumber++;
   GouNinja.transitionToState('ask');
 };
 
-StartQuestionState.prototype.complete = function(completion) {
-  if (completion) completion();
+StartQuestionState.prototype.complete = function(completion, env) {
+  if (completion) completion(env);
 };
 
 StartQuestionState.prototype.generateNumber = function(min, max) {
@@ -46,6 +32,11 @@ StartQuestionState.prototype.generateTurn = function() {
   var unit = '';
   if (GouNinja.rules.useUnits) {
     unit = _(this.units).sample();
+
+    // This can happen if the user chooses to use units but selects none.
+    if (!unit) {
+      unit = '';
+    }
   }
   var string = number + unit;
   GouNinja.turn.string = string;

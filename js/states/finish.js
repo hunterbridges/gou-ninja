@@ -2,7 +2,7 @@ function FinishState() {
   this.identifier = 'finish';
 };
 
-FinishState.prototype.begin = function(completion) {
+FinishState.prototype.begin = function(completion, env) {
   this.$state = $('#finish-state');
   this.$state.css('display', 'block');
   this.$state.delegate('a.btn', 'click', function() {
@@ -26,14 +26,14 @@ FinishState.prototype.begin = function(completion) {
   var $pointsAwarded = this.$state.find('#total-points');
   $pointsAwarded.html(GouNinja.currentScore);
 
-  if (completion) completion();
+  if (completion) completion(env);
 };
 
-FinishState.prototype.complete = function(completion) {
+FinishState.prototype.complete = function(completion, env) {
   this.$state.css('display', 'none');
   this.$state.undelegate('a.btn', 'click');
   $(document).off('keypress');
 
-  if (completion) completion();
+  if (completion) completion(env);
 };
 
