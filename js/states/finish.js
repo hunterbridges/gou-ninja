@@ -3,6 +3,7 @@ function FinishState() {
 };
 
 FinishState.prototype.begin = function(completion, env) {
+  $('#buddy').css('display', 'block');
   this.$state = $('#finish-state');
   this.$state.css('display', 'block');
   this.$state.delegate('a.btn', 'click', function() {
@@ -30,6 +31,7 @@ FinishState.prototype.begin = function(completion, env) {
 };
 
 FinishState.prototype.complete = function(completion, env) {
+  $('#buddy').css('display', 'none');
   this.$state.css('display', 'none');
   this.$state.undelegate('a.btn', 'click');
   $(document).off('keypress');

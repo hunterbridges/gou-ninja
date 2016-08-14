@@ -6,6 +6,8 @@ ReadyState.prototype.begin = function(completion, env) {
   this.$timer = $('#play-timer');
   this.$timer.css('display', 'none');
 
+  $('#buddy').css('display', 'block');
+
   this.$launcher = $('#launcher');
   this.$launcher.css('display', 'block');
 
@@ -32,6 +34,7 @@ ReadyState.prototype.begin = function(completion, env) {
 ReadyState.prototype.complete = function(completion, env) {
   this.$launcher.undelegate('.start-button', 'click');
   this.$launcher.css('display', 'none');
+  $('#buddy').css('display', 'none');
 
   if (completion) completion(env);
 };

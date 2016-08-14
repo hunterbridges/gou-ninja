@@ -6,6 +6,17 @@
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
+  <meta property="og:title" content="{{ site.title }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://gou.ninja/img/metaPreview.png" />
+  <meta property="og:url" content="http://gou.ninja/" />
+  <meta property="og:description" content="{{ site.description }}" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="{{ site.title }}" />
+  <meta name="twitter:description" content="{{ site.description }}" />
+  <meta name="twitter:image" content="http://gou.ninja/img/metaPreview.png" />
+
   <link href="https://npmcdn.com/basscss@7.1.1/css/basscss.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">

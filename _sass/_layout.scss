@@ -4,6 +4,18 @@ html,body { height: 100%; margin: 0px; padding: 0px; }
   height: 100vh;
   width: 100vw;
   box-sizing: border-box;
+  background-image: url('/img/dojo.jpg');
+  background-position: center bottom;
+  background-size: fill;
+}
+
+#buddy {
+  display:none;
+  position:absolute;
+  bottom: -5vh;
+  right: -5vw;
+  max-width: 25vw;
+  max-height: 50vw;
 }
 
 #interface-layer, #interface-wrapper {
@@ -14,15 +26,18 @@ html,body { height: 100%; margin: 0px; padding: 0px; }
 #ask-state, #prompt-state, #result-state, #finish-state, #error-state, #launcher,
 #select-units-state {
   display:none;
+  z-index:2;
 }
 
 #top-area {
   text-align:center;
   width:100%;
+  z-index:2;
 }
 
 #bottom-area {
   width:100%;
+  z-index:2;
 }
 
 #center-area {
@@ -52,6 +67,7 @@ html,body { height: 100%; margin: 0px; padding: 0px; }
   border-left: none;
   border-right: none;
   border-bottom: 1px dotted;
+  height: auto;
 }
 
 @keyframes countdown {
@@ -90,7 +106,6 @@ html,body { height: 100%; margin: 0px; padding: 0px; }
   max-width:128px;
   display:block;
   margin:2em auto;
-  opacity:0.25;
 }
 
 #quit {
