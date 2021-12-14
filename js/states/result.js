@@ -38,6 +38,7 @@ ResultState.prototype.checkAnswer = function() {
   var $wrapper = $('#interface-wrapper');
   var $rightOrWrong = this.$state.find('#right-or-wrong');
   var $pointsAwarded = this.$state.find('#points-awarded');
+  var $pointsMsg = this.$state.find('#points-msg');
   GouNinja.totalAnswers++;
   if (parseInt(GouNinja.turn.answer) == GouNinja.turn.number) {
     // Ya did it.
@@ -45,6 +46,7 @@ ResultState.prototype.checkAnswer = function() {
 
     var awarded = Math.floor((15000 - GouNinja.turn.answerTime) / 100);
     $pointsAwarded.html(awarded);
+
     GouNinja.currentScore += awarded;
 
     GouNinja.answerTimes.push(GouNinja.turn.answerTime);
@@ -65,6 +67,12 @@ ResultState.prototype.checkAnswer = function() {
       $wrapper.addClass('flash fl-red');
     }, 1);
   }
+
+  if (GouNinja.rules.learningMode == true)
+    $pointsMsg.hide();
+  else
+    $pointsMsg.show();
+
 };
 
 ResultState.prototype.progress = function() {

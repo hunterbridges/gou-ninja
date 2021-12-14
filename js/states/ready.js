@@ -40,9 +40,9 @@ ReadyState.prototype.complete = function(completion, env) {
 };
 
 ReadyState.prototype.startGame = function(difficulty) {
-  console.log("Start " + difficulty + " game.");
+  // console.log("Start " + difficulty + " game.");
   var rules = this.getRules(difficulty);
-  console.info(rules);
+  // console.info(rules);
 
   GouNinja.rules = rules;
   GouNinja.transitionToState('startQuestion');
@@ -53,6 +53,7 @@ ReadyState.prototype.getRules = function(difficulty) {
   rules.numberMax = parseInt($('#config-max').val(), 10);
   rules.gameLength = parseInt($('#config-length').val(), 10);
   rules.useUnits = $('#config-units')[0].checked;
+  rules.learningMode = false;
 
   if (difficulty === 'easy') {
     rules.maxTries = 3;
@@ -60,12 +61,28 @@ ReadyState.prototype.getRules = function(difficulty) {
     rules.maxTries = 2;
   } else if (difficulty === 'hard') {
     rules.maxTries = 1;
+  } else if (difficulty === 'learning') {
+    rules.maxTries = 0;
+    rules.learningMode = true;
   }
 
   rules.selectedUnits = $.makeArray($('#units-menu input:checked').map(function(i, el) {
-    return $(el).attr('data-unit');
+    var unit = { unit: $(el).attr('data-unit') };
+
+    if (el.hasAttribute('data-min') && el.hasAttribute('data-max'))
+    {
+      unit.limit = true;
+      unit.min = parseInt($(el).attr('data-min'), 10);
+      unit.max = parseInt($(el).attr('data-max'), 10);
+    }
+    else
+    {
+      unit.limit = false;
+    }
+
+    return unit;
   }));
-  console.info(rules.selectedUnits);
+  // console.info(rules.selectedUnits);
 
   return rules;
 };

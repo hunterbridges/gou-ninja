@@ -24,10 +24,14 @@ AskState.prototype.complete = function(completion, env) {
 AskState.prototype.doAsk = function() {
   var string = GouNinja.turn.string;
 
+  var rate = 1.175 - (0.175 * GouNinja.turn.listens);
+  if (GouNinja.rules.learningMode === true)
+    rate = 0.5;
+
   var msg = new SpeechSynthesisUtterance();
   msg.voice = GouNinja.voice;
   msg.volume = 1;
-  msg.rate = 1.175 - (0.175 * GouNinja.turn.listens);
+  msg.rate = rate;
   msg.pitch = 1;
   msg.text = string;
   msg.lang = 'ja-JP';

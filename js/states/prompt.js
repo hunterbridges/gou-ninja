@@ -23,7 +23,9 @@ PromptState.prototype.begin = function(completion, env) {
   this.$timer = $('#play-timer');
   this.$timer.css('display', 'block');
 
-  this.startTimer();
+  if (GouNinja.rules.learningMode !== true)
+    this.startTimer();
+
   if (completion) completion(env);
 };
 

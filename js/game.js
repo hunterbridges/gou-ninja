@@ -79,17 +79,17 @@ var GouNinja = {
     var newStateClass = this.stateClasses[newState];
     var game = this;
     if (!!this.currentState) {
-      console.log("Completing state <"+this.currentState.identifier+">");
+      // console.log("Completing state <"+this.currentState.identifier+">");
       this.currentState.complete(function(env) {
         game.currentState = null;
         game.currentState = new newStateClass(env);
-        console.log("Beginning state <"+game.currentState.identifier+">");
+        // console.log("Beginning state <"+game.currentState.identifier+">");
         game.currentState.begin(null, env);
         HUD.update();
       }, env);
     } else {
       game.currentState = new newStateClass(env);
-      console.log("Beginning state <"+this.currentState.identifier+">");
+      // console.log("Beginning state <"+this.currentState.identifier+">");
       game.currentState.begin(null, env);
       HUD.update();
     }

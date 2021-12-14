@@ -27,21 +27,50 @@ StartQuestionState.prototype.generateTurn = function() {
     answerTime: 0
   };
 
-  var number = this.generateNumber(1, GouNinja.rules.numberMax);
-  GouNinja.turn.number = number;
-  console.log("Generated number: ", number);
-
-  var unit = '';
+  var hasValidUnit = false;
+  var pickedUnit = null;
   if (GouNinja.rules.useUnits) {
-    unit = _(this.units).sample();
+    while (hasValidUnit == false) {
+      var unit = _(this.units).sample();
 
-    // This can happen if the user chooses to use units but selects none.
-    if (!unit) {
-      unit = '';
+      // This can happen if the user chooses to use units but selects none.
+      if (!unit) {
+        unitStr = '';
+        break;
+      }
+
+      // If unit has limits, make sure the limits are in bounds of the numberMax
+      if (unit.limit) {
+        if (unit.min > GouNinja.rules.numberMax)
+          continue;
+      }
+
+      hasValidUnit = true;
+      pickedUnit = unit;
     }
   }
-  var string = number + unit;
+
+  // Limit min and max by the unit limits
+  var randMin = 1;
+  var randMax = GouNinja.rules.numberMax;
+  var unitStr = '';
+  if (hasValidUnit)
+  {
+    unitStr = pickedUnit.unit;
+
+    if (pickedUnit.limit)
+    {
+      randMin = Math.max(randMin, pickedUnit.min);
+      randMax = Math.min(randMax, pickedUnit.max);
+    }
+  }
+
+  var number = this.generateNumber(randMin, randMax);
+  GouNinja.turn.number = number;
+  // console.log("Generated number: ", number);
+
+  var string = number + unitStr;
   GouNinja.turn.string = string;
-  console.log("Generated string: ", string);
+  // console.log("Generated string: ", string);
 };
 

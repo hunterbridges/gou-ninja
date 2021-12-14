@@ -33,9 +33,10 @@ var HUD = {
       }
       this.$el.html(
           '<b>Correct:</b> ' + correct + "%&nbsp;&nbsp;" +
-          '<b>Score:</b> ' + GouNinja.currentScore + "&nbsp;&nbsp;" +
+          (GouNinja.rules.learningMode !== true ? '<b>Score:</b> ' + GouNinja.currentScore + "&nbsp;&nbsp;" : '') +
           '<b>Avg Resp:</b> ' + avgResp + "ms&nbsp;&nbsp;" +
-          "<b>Question:</b> " + GouNinja.questionNumber + "/" + GouNinja.rules.gameLength);
+          "<b>Question:</b> " + GouNinja.questionNumber + "/" + GouNinja.rules.gameLength + 
+          (GouNinja.rules.learningMode === true ? '&nbsp;&nbsp;<a href="#!" onclick="GouNinja.transitionToState(\'ask\');">Repeat</a>' : ''));
       this.$quit.css('display', 'block');
     } else {
       // Game is inactive

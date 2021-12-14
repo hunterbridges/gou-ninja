@@ -20,12 +20,22 @@ FinishState.prototype.begin = function(completion, env) {
     });
   }, 100);
 
-  if (GouNinja.currentScore > GouNinja.highScore) {
-    GouNinja.highScore = GouNinja.currentScore;
-  }
-
   var $pointsAwarded = this.$state.find('#total-points');
+  var $totalMsg = this.$state.find('#total-msg');
   $pointsAwarded.html(GouNinja.currentScore);
+
+  if (GouNinja.rules.learningMode === true)
+  {
+    $totalMsg.hide();
+  }
+  else
+  {
+    if (GouNinja.currentScore > GouNinja.highScore) {
+      GouNinja.highScore = GouNinja.currentScore;
+    }
+
+    $totalMsg.show();
+  }
 
   if (completion) completion(env);
 };

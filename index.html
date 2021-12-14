@@ -13,7 +13,6 @@ layout: default
 
     <div id="middle-wrapper">
       <div id="center-area" class="bold p2 mx-auto center">
-        <!--<div id="indicator-display">Ikebukuro</div>-->
         <img id="buddy" src="/img/GouNinja_small.png">
 
         <div id="launcher" class="mx-auto p2 bg-white rounded">
@@ -50,7 +49,8 @@ layout: default
 
             <a href="#!" data-difficulty="easy" id="start-easy" class="btn btn-primary start-button weight-light bg-green">Easy<br>(2 repeats)</a>
             <a href="#!" data-difficulty="med"  id="start-med"  class="btn btn-primary start-button weight-light bg-orange">Medium<br>(1 repeat)</a>
-            <a href="#!" data-difficulty="hard" id="start-hard" class="btn btn-primary start-button weight-light bg-red">Hard<br>(No repeats)</a>
+            <a href="#!" data-difficulty="hard" id="start-hard" class="btn btn-primary start-button weight-light bg-red">Hard<br>(No repeats)</a><br><br>
+            <a href="#!" data-difficulty="learning" id="start-learning" class="btn btn-primary start-button weight-light bg-green">Learning Mode<br>(Slow, infinite repeats, no time limit)</a>
           </p>
         </div>
 
@@ -60,36 +60,50 @@ layout: default
             <a class="btn bg-green white rounded" id="units-select-all">Select All</a>
             <h3>Available Units</h3>
             <b>Objects</b><br>
+            <input type="checkbox" name="unit-en" id="unit-en" data-unit="円" checked><!--
+            --><label for="unit-en" class="weight-light nowrap">円 - Yen</label><br>
             <input type="checkbox" name="unit-tsu" id="unit-tsu" data-unit="つ" checked><!--
             --><label for="unit-tsu" class="weight-light nowrap">つ - Things</label>&nbsp;&nbsp;
+            <input type="checkbox" name="unit-ko" id="unit-ko" data-unit="個" checked><!--
+            --><label for="unit-ko" class="weight-light nowrap">個「こ」- Things</label><br>
+            <input type="checkbox" name="unit-nin" id="unit-nin" data-unit="人" checked><!--
+            --><label for="unit-nin" class="weight-light nowrap">人「にん」- People</label>&nbsp;&nbsp;
             <input type="checkbox" name="unit-dai" id="unit-dai" data-unit="台" checked><!--
             --><label for="unit-dai" class="weight-light nowrap">台「だい」- Machines</label><br>
             <input type="checkbox" name="unit-hon" id="unit-hon" data-unit="本" checked><!--
             --><label for="unit-hon" class="weight-light nowrap">本「ほん」- Long, thin objects</label>&nbsp;&nbsp;
             <input type="checkbox" name="unit-mai" id="unit-mai" data-unit="枚" checked><!--
             --><label for="unit-mai" class="weight-light nowrap">枚「まい」- Thin, flat objects</label><br>
+            <input type="checkbox" name="unit-hiki" id="unit-hiki" data-unit="匹" checked><!--
+            --><label for="unit-hiki" class="weight-light nowrap">匹「ひき」- Small animals</label>&nbsp;&nbsp;
+            <input type="checkbox" name="unit-tou" id="unit-tou" data-unit="頭" checked><!--
+            --><label for="unit-tou" class="weight-light nowrap">頭「とう」- Large animals</label>&nbsp;&nbsp;
+            <input type="checkbox" name="unit-wa" id="unit-wa" data-unit="羽" checked><!--
+            --><label for="unit-wa" class="weight-light nowrap">羽「わ」- Birds</label><br>
+            <input type="checkbox" name="unit-satsu" id="unit-satsu" data-unit="冊" checked><!--
+            --><label for="unit-satsu" class="weight-light nowrap">冊「さつ」- Books</label><br>
 
             <br><b>Time</b><br>
-            <input type="checkbox" name="unit-bun" id="unit-bun" data-unit="分" checked><!--
+            <input type="checkbox" name="unit-bun" id="unit-bun" data-unit="分" data-min="1" data-max="60" checked><!--
             --><label for="unit-bun" class="weight-light nowrap">分「ぶん」- Minutes</label><br>
-            <input type="checkbox" name="unit-ka" id="unit-ka" data-unit="日" checked><!--
+            <input type="checkbox" name="unit-ka" id="unit-ka" data-unit="日" data-min="1" data-max="30" checked><!--
             --><label for="unit-ka" class="weight-light nowrap">日「か」- Day of the month</label>&nbsp;&nbsp;
-            <input type="checkbox" name="unit-shuu" id="unit-shuu" data-unit="週" checked><!--
+            <input type="checkbox" name="unit-shuu" id="unit-shuu" data-unit="週" data-min="1" data-max="4" checked><!--
             --><label for="unit-shuu" class="weight-light nowrap">週「しゅう」- Weeks</label><br>
-            <input type="checkbox" name="unit-ji" id="unit-ji" data-unit="時" checked><!--
+            <input type="checkbox" name="unit-ji" id="unit-ji" data-unit="時" data-min="0" data-max="24" checked><!--
             --><label for="unit-ji" class="weight-light nowrap">時「じ」- Hour of the day</label>&nbsp;&nbsp;
-            <input type="checkbox" name="unit-jikan" id="unit-jikan" data-unit="時間" checked><!--
+            <input type="checkbox" name="unit-jikan" id="unit-jikan" data-unit="時間" data-min="1" data-max="24" checked><!--
             --><label for="unit-jikan" class="weight-light nowrap">時間「じかん」- Hour-long periods</label><br>
-            <input type="checkbox" name="unit-gatsu" id="unit-gatsu" data-unit="月" checked><!--
+            <input type="checkbox" name="unit-gatsu" id="unit-gatsu" data-unit="月" data-min="1" data-max="12" checked><!--
             --><label for="unit-gatsu" class="weight-light nowrap">月「がつ」- Months of the year</label>&nbsp;&nbsp;
-            <input type="checkbox" name="unit-kagetsu" id="unit-kagetsu" data-unit="ヶ月" checked><!--
+            <input type="checkbox" name="unit-kagetsu" id="unit-kagetsu" data-unit="ヶ月" data-min="1" data-max="12" checked><!--
             --><label for="unit-kagetsu" class="weight-light nowrap">ヶ月「かげつ」- Month-long periods</label><br>
-            <input type="checkbox" name="unit-nen" id="unit-nen" data-unit="時" checked><!--
+            <input type="checkbox" name="unit-nen" id="unit-nen" data-unit="年" data-min="1900" data-max="2100" checked><!--
             --><label for="unit-nen" class="weight-light nowrap">年「ねん」- Years</label>&nbsp;&nbsp;
-            <input type="checkbox" name="unit-nenkan" id="unit-nenkan" data-unit="時間" checked><!--
+            <input type="checkbox" name="unit-nenkan" id="unit-nenkan" data-unit="年間" checked><!--
             --><label for="unit-nenkan" class="weight-light nowrap">年間「ねんかん」- Year-long periods</label><br>
-            <input type="checkbox" name="unit-sai" id="unit-sai" data-unit="才" checked><!--
-            --><label for="unit-sai" class="weight-light nowrap">才「さい」- Years of age</label><br>
+            <input type="checkbox" name="unit-sai" id="unit-sai" data-unit="歳" data-min="1" data-max="99" checked><!--
+            --><label for="unit-sai" class="weight-light nowrap">歳「さい」- Years of age</label><br>
 
             <br><b>Metric System</b><br>
             <input type="checkbox" name="unit-meetoru" id="unit-meetoru" data-unit="メートル" checked><!--
@@ -123,12 +137,12 @@ layout: default
 
         <div id="result-state">
           <img src="/img/barchart.svg" class="instruction-icon">
-          <span id="right-or-wrong"></span> You get <span id="points-awarded"></span> points.<br><br>
+          <span id="right-or-wrong"></span> <span id="points-msg">You get <span id="points-awarded"></span> points.</span><br><br>
           <a href="#!" class="btn bg-blue white rounded">Continue</a>
         </div>
 
         <div id="finish-state">
-          The game is over. You got <span id="total-points"></span> points.<br><br>
+          The game is over. <span id="total-msg">You got <span id="total-points"></span> points. </span>Nice job!<br><br>
           <a href="#!" class="btn bg-green white rounded">Play Again</a>
         </div>
 
