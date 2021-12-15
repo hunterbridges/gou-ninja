@@ -28,6 +28,10 @@ ReadyState.prototype.begin = function(completion, env) {
   this.$launcher.delegate('#config-units-button', 'click', function(e) {
       GouNinja.transitionToState('selectUnits');
   });
+
+  this.$launcher.delegate('#howtoplay-button', 'click', function(e) {
+      GouNinja.transitionToState('howToPlay');
+  });
   if (completion) completion(env);
 };
 

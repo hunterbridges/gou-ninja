@@ -24,7 +24,7 @@ html,body { height: 100%; margin: 0px; padding: 0px; }
 }
 
 #ask-state, #prompt-state, #result-state, #finish-state, #error-state, #launcher,
-#select-units-state {
+#select-units-state, #howtoplay-state {
   display:none;
   z-index:2;
 }

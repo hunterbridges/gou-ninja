@@ -20,7 +20,10 @@ layout: default
           <h1 class="m0">Gou Ninja</h1>
           <p class="m0 weight-light">番号の聞き取りを練習しましょう！</p>
           <p class="mt1 mb0 small weight-light">著 <a href="https://twitter.com/hunterbridges" target="_blank">@HunterBridges</a></p>
-            <h3 class="mb0">Game Options</h3>
+          <p>
+            <a href="#!" id="howtoplay-button">How To Play</a>
+          </p>
+          <h3 class="mb0">Game Options</h3>
 
           <p class="m0 weight-light">
             <label for="config-max">Max Reading Number:</label>&nbsp;&nbsp;
@@ -122,6 +125,56 @@ layout: default
             --><label for="unit-null" class="weight-light nowrap">(no unit)</label><br>
 
             <br><a class="btn bg-blue white rounded" id="units-ok">OK</a>
+          </div>
+        </div>
+
+        <div id="howtoplay-state" class="mx-auto p2 bg-white rounded regular col-6">
+          <div id="howtoplay-menu">
+            <h3>How To Play</h3>
+
+            <p>
+              <b>Gou Ninja</b> is a game that uses text-to-speech to challenege
+              number listening comprehension in Japanese.
+            </p>
+
+            <p>
+              <b>When you start the game,</b> a random number will be generated and read
+              aloud to you. If you are using units, a unit may be attached to
+              the number. This is important, because in Japanese, the unit can change
+              the reading of the number!
+            </p>
+
+            <p>
+              <b>After the number is read,</b> you will have 5 seconds to type in the number
+              that was read to you. <i>You don't need to input the unit, just the number!</i>
+              Simply type in the number, and press Enter.
+            </p>
+
+            <p>
+              <b>If you run out of time,</b> the number will be repeated (depending on the difficulty).
+              When you run out of repeats or get the number correct, the game will progress
+              to the next question. This cycle repeats until the selected number of questions
+              has been completed.
+            </p>
+
+            <p>
+              As you progress, the game tracks your correct answers and response time, and
+              uses these to calculate a score. Aim to respond quickly and get the highest score!
+            </p>
+
+            <p>
+              There is also a <b>"Learning Mode,"</b> which slows the speech, disables scoring, and
+              allows for unlimited manual repeats. This should help beginner learners ease in
+              to the experience. Contrast this with Hard mode, which reads at full speed with
+              no repeats (a lot more similar to encountering number listening in real life)!
+            </p>
+
+            <p>
+              Keep practicing, and work your way up the difficulty levels. Pretty soon, you too
+              will be a Gou Ninja!
+            </p>
+
+            <br><a class="btn bg-blue white rounded" id="howtoplay-ok">OK</a>
           </div>
         </div>
 

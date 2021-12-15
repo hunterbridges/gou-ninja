@@ -1,9 +1,10 @@
 var GouNinja = {
-  validStates: ['ready', 'startQuestion', 'ask', 'prompt', 'result', 'finish', 'error', 'selectUnits'],
+  validStates: ['ready', 'startQuestion', 'ask', 'prompt', 'result', 'finish', 'error', 'selectUnits', 'howToPlay'],
   validTransitions: {
     'error': [],
-    'ready': ['startQuestion', 'selectUnits'],
+    'ready': ['startQuestion', 'selectUnits', 'howToPlay'],
     'selectUnits': ['ready'],
+    'howToPlay': ['ready'],
     'startQuestion': ['ask'],
     'ask': ['prompt', 'finish'],
     'prompt': ['result', 'ask', 'finish'],
@@ -15,6 +16,7 @@ var GouNinja = {
     'error': ErrorState,
     'ready': ReadyState,
     'selectUnits': SelectUnitsState,
+    'howToPlay': HowToPlayState,
     'startQuestion': StartQuestionState,
     'ask': AskState,
     'prompt': PromptState,
